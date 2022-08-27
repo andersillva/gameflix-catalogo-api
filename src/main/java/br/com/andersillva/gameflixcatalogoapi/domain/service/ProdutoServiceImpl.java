@@ -23,6 +23,9 @@ public class ProdutoServiceImpl implements ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private GeradorIdService geradorIdService;
 
 	@Override
 	public Produto obterPorId(Long id) {
@@ -44,7 +47,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void cadastrar(Produto produto) {
-		produto.setId(null);
+		produto.setId(geradorIdService.gerarId(Produto.SEQUENCE_NAME));
 		produtoRepository.save(produto);
 	}
 
