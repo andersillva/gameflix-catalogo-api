@@ -15,7 +15,7 @@ public class AssinaturaForm {
 	
 	private String descricao;
 	
-	private String duracao;
+	private Long duracao;
 
 	private BigDecimal preco;
 	
