@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 
-import br.com.andersillva.gameflixcatalogoapi.domain.document.Produto;
+import br.com.andersillva.gameflixcatalogoapi.domain.document.Jogo;
 import lombok.Data;
 
 @Data
-public class ProdutoForm {
+public class JogoForm {
 
 	private static ModelMapper mapper = new ModelMapper();
 
@@ -23,12 +23,14 @@ public class ProdutoForm {
 	
 	private Long anoLancamento;
 
+	private Long classificacaoEtaria;
+
 	private BigDecimal preco;
 	
 	private List<String> tags;
 
-	public Produto converter() {
-		return mapper.map(this, Produto.class);
+	public Jogo converter() {
+		return mapper.map(this, Jogo.class);
 	}
 
 }

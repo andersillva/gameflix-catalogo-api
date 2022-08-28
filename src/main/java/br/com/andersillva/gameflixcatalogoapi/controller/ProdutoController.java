@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andersillva.gameflixcatalogoapi.controller.dto.ProdutoDTO;
-import br.com.andersillva.gameflixcatalogoapi.controller.form.ProdutoForm;
+import br.com.andersillva.gameflixcatalogoapi.controller.form.JogoForm;
 import br.com.andersillva.gameflixcatalogoapi.controller.util.VersaoAPI;
+import br.com.andersillva.gameflixcatalogoapi.domain.document.Jogo;
 import br.com.andersillva.gameflixcatalogoapi.domain.document.Produto;
 import br.com.andersillva.gameflixcatalogoapi.domain.service.ProdutoService;
 
@@ -28,15 +29,6 @@ public class ProdutoController {
 
 	@Autowired
 	private ProdutoService produtoService;
-
-	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> registrar(@Valid @RequestBody ProdutoForm produtoForm) {
-
-		Produto produto = produtoForm.converter();
-		produtoService.cadastrar(produto);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
-
-	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutoDTO> obterProduto(@PathVariable("id") Long id) {
@@ -53,6 +45,24 @@ public class ProdutoController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
+	}
+
+	@PostMapping(path="/jogo", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> registrarJogo(@Valid @RequestBody JogoForm produtoForm) {
+
+		Jogo produto = produtoForm.converter();
+		produtoService.cadastrar(produto);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+
+	}
+
+	@PostMapping(path="/assinatura", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Void> registrarAssinatura(@Valid @RequestBody JogoForm produtoForm) {
+
+		Jogo produto = produtoForm.converter();
+		produtoService.cadastrar(produto);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+
 	}
 
 }
