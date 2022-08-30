@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.andersillva.gameflixcatalogoapi.domain.document.domaintype.TipoProduto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,5 +35,7 @@ public abstract class Produto {
 
 	@TextIndexed(weight = 5)
 	private List<String> tags = new ArrayList<>();
+
+	private TipoProduto tipo;
 
 }

@@ -20,13 +20,13 @@ public class JogoForm {
 	private String fabricante;
 
 	private String descricao;
-	
+
 	private Long anoLancamento;
 
 	private Long classificacaoEtaria;
 
 	private BigDecimal preco;
-	
+
 	private List<String> tags;
 
 	public Jogo converter() {

@@ -1,6 +1,7 @@
 package br.com.andersillva.gameflixcatalogoapi.controller.form;
 
 import java.math.BigDecimal;
+
 import org.modelmapper.ModelMapper;
 
 import br.com.andersillva.gameflixcatalogoapi.domain.document.Assinatura;

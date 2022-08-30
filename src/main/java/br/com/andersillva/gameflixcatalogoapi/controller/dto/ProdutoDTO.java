@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import br.com.andersillva.gameflixcatalogoapi.domain.document.Produto;
+import br.com.andersillva.gameflixcatalogoapi.domain.document.domaintype.TipoProduto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,6 +42,8 @@ public class ProdutoDTO {
 
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private Long duracao;
+
+	private TipoProduto tipo;
 
 	public ProdutoDTO(Produto produto) {
 		mapper.map(produto, this);

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.andersillva.gameflixcatalogoapi.controller.dto.ProdutoDTO;
+import br.com.andersillva.gameflixcatalogoapi.controller.form.AssinaturaForm;
 import br.com.andersillva.gameflixcatalogoapi.controller.form.JogoForm;
 import br.com.andersillva.gameflixcatalogoapi.controller.util.VersaoAPI;
+import br.com.andersillva.gameflixcatalogoapi.domain.document.Assinatura;
 import br.com.andersillva.gameflixcatalogoapi.domain.document.Jogo;
 import br.com.andersillva.gameflixcatalogoapi.domain.document.Produto;
 import br.com.andersillva.gameflixcatalogoapi.domain.service.ProdutoService;
@@ -57,10 +59,10 @@ public class ProdutoController {
 	}
 
 	@PostMapping(path="/assinatura", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Void> registrarAssinatura(@Valid @RequestBody JogoForm produtoForm) {
+	public ResponseEntity<Void> registrarAssinatura(@Valid @RequestBody AssinaturaForm assinaturaForm) {
 
-		Jogo produto = produtoForm.converter();
-		produtoService.cadastrar(produto);
+		Assinatura assinatura = assinaturaForm.converter();
+		produtoService.cadastrar(assinatura);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 
 	}
