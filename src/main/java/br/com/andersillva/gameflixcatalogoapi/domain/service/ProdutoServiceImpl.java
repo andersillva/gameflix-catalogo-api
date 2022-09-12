@@ -34,6 +34,11 @@ public class ProdutoServiceImpl implements ProdutoService {
 	}
 
 	@Override
+	public List<Produto> obterPorIds(List<Long> id) {
+		return (List<Produto>) produtoRepository.findAllById(id);
+	}
+
+	@Override
 	public List<Produto> pesquisar(String termo) {
 	    TextCriteria criteria = TextCriteria
 	            .forDefaultLanguage()

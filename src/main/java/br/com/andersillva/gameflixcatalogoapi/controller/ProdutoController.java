@@ -1,6 +1,8 @@
 package br.com.andersillva.gameflixcatalogoapi.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -37,6 +39,19 @@ public class ProdutoController {
 		Produto produto = produtoService.obterPorId(id);
 		var produtoDTO = new ProdutoDTO(produto);
 		return new ResponseEntity<>(produtoDTO, HttpStatus.OK);
+	}
+
+	@GetMapping()
+	public ResponseEntity<List<ProdutoDTO>> obterProdutos(@RequestParam("ids") String ids) {
+		List<Long> parametros = Stream.of(ids.split(","))
+				.map(Long::parseLong)
+		        .collect(Collectors.toList());
+		List<Produto> produtos = produtoService.obterPorIds(parametros);
+		if (!produtos.isEmpty()) {
+			return new ResponseEntity<>(ProdutoDTO.converter(produtos), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@GetMapping("/pesquisa")
