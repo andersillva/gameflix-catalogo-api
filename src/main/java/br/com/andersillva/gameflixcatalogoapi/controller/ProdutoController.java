@@ -37,7 +37,7 @@ public class ProdutoController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutoDTO> obterProduto(@PathVariable("id") Long id) {
 		Produto produto = produtoService.obterPorId(id);
-		var produtoDTO = new ProdutoDTO(produto);
+		ProdutoDTO produtoDTO = new ProdutoDTO(produto);
 		return new ResponseEntity<>(produtoDTO, HttpStatus.OK);
 	}
 
